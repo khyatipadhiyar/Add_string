@@ -8,6 +8,21 @@ function App() {
 
   const addstring =(inputString)=>{
     console.log(inputString)
+    // inputString state variable is assigned target value of input tag so it will always be string.
+    // No need to check if inputString is string.
+    if(inputString!==''){
+      let newString = inputString.replace(/\\n/g,',')    
+      let splitString = newString.split(',');
+      if(splitString.includes("")){
+        alert('Invalid Input')
+      } else {
+        let sum=0;
+        splitString.forEach(element => {
+          sum=parseInt(element)+sum;
+        });
+        setSumstate(sum);
+      }
+    }
   }
 
   return (

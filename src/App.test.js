@@ -29,7 +29,32 @@ test('checking input string as 1',()=>{
 
   fireEvent.change(inputField,{target:{value:"1"}});
   fireEvent.click(btn);
-  
+
   const result = getByText("sum = 1")
+  expect(result).toBeInTheDocument();
+});
+
+
+test('checking input string as 1,2',()=>{
+  const {getByTestId,getByText}=render(<App />);
+  const inputField =  getByTestId('inputData') ;
+  const btn = getByTestId('btn');
+
+  fireEvent.change(inputField,{target:{value:"1,2"}});
+  fireEvent.click(btn);
+  
+  const result = getByText("sum = 3")
+  expect(result).toBeInTheDocument();
+});
+
+test('checking input string as 1\\n2,3',()=>{
+  const {getByTestId,getByText}=render(<App />);
+  const inputField =  getByTestId('inputData') ;
+  const btn = getByTestId('btn');
+
+  fireEvent.change(inputField,{target:{value:"1\\n2,3"}});
+  fireEvent.click(btn);
+  
+  const result = getByText("sum = 6")
   expect(result).toBeInTheDocument();
 });

@@ -11,8 +11,20 @@ function App() {
     // inputString state variable is assigned target value of input tag so it will always be string.
     // No need to check if inputString is string.
     if(inputString!==''){
-      let newString = inputString.replace(/\\n/g,',')    
+
+      //handling custom delimiter
+      let delimiter = '';
+      let rs = inputString;
+      if(inputString.match(/^\/\/.\\n/)){
+        console.log('match');
+        delimiter = inputString[2];
+        let re = new RegExp(delimiter, "g");
+        rs = inputString.slice(5).replace(re,',')
+      }
+
+      let newString = rs.replace(/\\n/g,',')    
       let splitString = newString.split(',');
+      console.log(splitString)
       if(splitString.includes("")){
         alert('Invalid Input')
       } else {

@@ -24,10 +24,24 @@ function App() {
 
       let newString = rs.replace(/\\n/g,',')    
       let splitString = newString.split(',');
+
+      // checking for negetive numbers
+      let allPositive = 1;
+      let negativeNumberList = []
+      splitString.forEach(el=>{
+        if(el[0]==="-"){
+          allPositive = 0;
+          negativeNumberList.push(el)
+        }
+      })
+
       console.log(splitString)
       if(splitString.includes("")){
         alert('Invalid Input')
-      } else {
+      } else if (allPositive===0){ 
+        alert('Found negative numbers '+negativeNumberList)
+      }
+      else {
         let sum=0;
         splitString.forEach(element => {
           sum=sum+parseInt(element);

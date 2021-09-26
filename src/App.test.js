@@ -58,3 +58,15 @@ test('checking input string as 1\\n2,3',()=>{
   const result = getByText("sum = 6")
   expect(result).toBeInTheDocument();
 });
+
+test('checking input string as \/\/;\\n1;2',()=>{
+  const {getByTestId,getByText}=render(<App />);
+  const inputField =  getByTestId('inputData') ;
+  const btn = getByTestId('btn');
+
+  fireEvent.change(inputField,{target:{value:"\/\/;\\n1;2"}});
+  fireEvent.click(btn);
+  
+  const result = getByText("sum = 3")
+  expect(result).toBeInTheDocument();
+});

@@ -18,7 +18,7 @@ function App() {
       } else {
         let sum=0;
         splitString.forEach(element => {
-          sum=parseInt(element)+sum;
+          sum=sum+parseInt(element);
         });
         setSumstate(sum);
       }
@@ -30,11 +30,17 @@ function App() {
       <h1>Technical Assessment</h1>
       <div>
         
-        <input type="text" placeholder="Enter a string" onChange={(e)=>{setInputString(e.target.value)}}/>
-        <button onClick={()=>{addstring(inputString)}}>calculation</button>
+        <input 
+          data-testid='inputData'
+          type="text" 
+          placeholder="Enter a string" 
+          onChange={(e)=>{setInputString(e.target.value)}}/>
+        <button 
+          data-testid='btn'
+          onClick={()=>{addstring(inputString)}}>calculation</button>
         <br/>
         <br/>
-        <label>sum = {sumstate}</label>
+        <label data-testid='labsum'>sum = {sumstate}</label>
       </div>
     </div>
   );
